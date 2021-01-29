@@ -77,7 +77,7 @@ func TestHeterogeneousPoolIntegration(t *testing.T) {
 		t.Run(tName, func(t *testing.T) {
 			var result string
 			if err = testHeterogeneousDB.QueryRowContext(tCase.In, "SELECT user FROM dual").Scan(&result); err != nil {
-				t.Fatal(err)
+				t.Fatalf("%s: %+v", tName, err)
 			}
 			if !strings.EqualFold(tCase.Want, result) {
 				t.Errorf("%s: currentUser got %s, wanted %s", tName, result, tCase.Want)
